@@ -1,5 +1,11 @@
 <?php
-$sqldashboard = mysqli_query($conn,"SELECT * FROM `upicts`.`link_image` INNER JOIN `upicts`.`image` ON ( `link_image`.`id_image` = `image`.`id_image` )");
+if(empty($_GET['cari'])){
+    $sqldashboard = mysqli_query($conn,"SELECT * FROM `upicts`.`link_image` INNER JOIN `upicts`.`image` ON ( `link_image`.`id_image` = `image`.`id_image` ) ORDER BY RAND() LIMIT 20");
+}else{
+    $cari = $_GET['cari'];
+    $sqldashboard = mysqli_query($conn,"SELECT `link_image`.*, `image`.*, `image_category`.*, `category`.* FROM `link_image` LEFT JOIN `image` ON `link_image`.`id_image` = `image`.`id_image` LEFT JOIN `image_category` ON `image_category`.`id_image` = `image`.`id_image` LEFT JOIN `category` ON `image_category`.`id_category` = `category`.`id_category` WHERE category.`name_category` LIKE '%$cari%' OR image.`title` LIKE '%$cari%' ORDER BY RAND() LIMIT 20");
+}
+$rand         = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT 6");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +28,6 @@ $sqldashboard = mysqli_query($conn,"SELECT * FROM `upicts`.`link_image` INNER JO
     <!-- header start  -->
 
     <header>
-
         <a href="/" class="logo">
             Upicts
         </a>
@@ -30,6 +35,9 @@ $sqldashboard = mysqli_query($conn,"SELECT * FROM `upicts`.`link_image` INNER JO
         <?php if($logintrue){ ?>
         <nav class="navbar">
             <ul>
+                <?php if($level == 'master'){
+                    echo '<li><a href="?id=admin">admin</a></li>';
+                }?>
                 <li><a href="<?php echo "?id=upload"?>">Upload</a></li>
                 <li><a href="<?php echo "?id=user"?>">Profile</a></li>
             </ul>
@@ -42,34 +50,25 @@ $sqldashboard = mysqli_query($conn,"SELECT * FROM `upicts`.`link_image` INNER JO
 
     <!-- header end  -->
 
-
     <!-- home start   -->
-
     <section class="home">
-
         <h1>Search Stock Photos & Images</h1>
-
-        <form action="">
-            <input type="search" id="home-search" placeholder="search images">
+        <form action="" method="GET">
+            <input type="search" id="home-search" placeholder="search images" name="cari" value="<?php echo $_GET['cari'];?>">
             <label for="home-search" class="fas fa-search"></label>
         </form>
-
         <ul class="suggestion">
             <li>suggestions : </li>
-            <li><a href="#">nature</a></li>
-            <li><a href="#">girl</a></li>
-            <li><a href="#">man</a></li>
-            <li><a href="#">corporate</a></li>
-            <li><a href="#">city</a></li>
-            <li><a href="#">more...</a></li>
+            <?php while($sugest = mysqli_fetch_array($rand)){ ?>
+            <li><a href="?cari=<?php echo $sugest['name_category'];?>"><?php echo $sugest['name_category'];?></a></li>
+            <?php } ?>
         </ul>
-
     </section>
-
     <!-- home section ends -->
 
-    <!-- gallery section start  -->
 
+
+    <!-- gallery section start  -->
     <section class="gallery">
         <?php
             while($fdash=mysqli_fetch_array($sqldashboard)){
@@ -77,9 +76,9 @@ $sqldashboard = mysqli_query($conn,"SELECT * FROM `upicts`.`link_image` INNER JO
         <div class="box">
             <img src="<?php echo $fdash['temp_img']; ?>" alt="img1" title="<?php echo $fdash['title']; ?>">
             <div class="info">
-                <a href="<?php echo $fdash['raw_img']; ?>" title="<?php echo $fdash['title']; ?>" class="fas fa-download" download="<?php echo $fdash['raw_img']; ?>"> <?php echo $fdash['download']; ?></a>
+                <a id="<?php echo $fdash['id_image'];?>" onclick="prosesd(this.id)" href="<?php echo $fdash['raw_img']; ?>" title="<?php echo $fdash['title']; ?>" class="fas fa-download" download="<?php echo $fdash['title']; ?>.jpg"> <?php echo $fdash['download']; ?></a>
                 <div class="links">
-                    <a href="#" class="far fa-heart"></a>
+                    <a id="<?php echo $fdash['id_image'];?>" onclick="proses(this.id)" class="far fa-heart"></a>
                 </div>
             </div>
         </div>
@@ -90,50 +89,41 @@ $sqldashboard = mysqli_query($conn,"SELECT * FROM `upicts`.`link_image` INNER JO
 
     <!-- gallery section ends -->
 
-    <a href="#" class="more">see more</a>
-
     <!-- footer section starts  -->
 
     <section class="footer">
 
-        <div class="box-container">
-
-            <div class="box">
-                <h3>why choose us?</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, ducimus vitae enim cum vero fugiat
-                    minima reprehenderit dolores eaque voluptate.</p>
-            </div>
-
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="#">home</a>
-                <a href="#">link1</a>
-                <a href="#">link2</a>
-                <a href="#">register</a>
-            </div>
-
-            <div class="box">
-                <h3>newsletter</h3>
-                <p>subscribe for latest updates</p>
-                <form action="">
-                    <input type="email" placeholder="enter your email">
-                    <button class="fas fa-paper-plane"></button>
-                </form>
-            </div>
+        <div class="box-container" id="aa">
 
         </div>
 
         <h1 class="credit"> &#169; 2021 <a href="#">Upicts</a> all rights reserved.</h1>
 
     </section>
-
-    <!-- footer section ends -->
-
     <!-- jquery cdn link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <!-- custom js file link  -->
     <script src="js/main.js"></script>
+    <script>
+        function proses(clicked_id){
+            var id = clicked_id;
+            $.post("addlove.php",
+        {
+            id
+        },
+        function(data,status){
+        });
+        }
+        function prosesd(clicked_id){
+            var d = clicked_id;
+            $.post("addlove.php",
+        {
+            d
+        },
+        function(data,status){
+        });
+        }
+    </script>
 
 
 </body>

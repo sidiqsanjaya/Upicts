@@ -160,6 +160,16 @@ header.header-active form {
     background: #fff;
     margin: 2rem 0;
 }
+.home .aaa{ 
+    display: flex;
+    align-items: center;
+    height: 10rem;
+    width: 30rem;
+    border-radius: 0rem;
+    background: unset;
+    padding-right: 0;
+
+}
 
 .home form #home-search {
     width: 100%;

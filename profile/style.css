@@ -1,0 +1,83 @@
+body {
+    /* background: #ff0552; */
+}
+
+a,
+i {
+    text-decoration: none !important;
+    font-size: 2rem !important;
+    color: #212529;
+}
+
+body {
+    background-color: #e9ecef;
+}
+
+.preheader {
+    display: none;
+    max-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 1px;
+    line-height: 1px;
+    color: #fff;
+    opacity: 0;
+}
+
+a:hover,
+i:hover {
+    color: #ff0552;
+}
+
+.back {
+    font-size: 2rem !important;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ff0552;
+}
+
+.profile-button {
+    background: #ff0552;
+    box-shadow: none;
+    border: none;
+}
+
+.profile-button:hover {
+    background: #af0035;
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none;
+}
+
+.nama {
+    font-size: 24px;
+}
+
+
+.back i,
+.back a {
+    text-decoration: none;
+    color: black;
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nama {
+    font-size: 2.5rem !important;
+}
+
+span {
+    font-size: 2rem !important;
+}
+
+.uploadfile {
+    font-size: 1.1rem;
+}
