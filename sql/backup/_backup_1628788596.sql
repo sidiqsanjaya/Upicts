@@ -27,8 +27,8 @@ CREATE TABLE `image` (
   CONSTRAINT `image_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO image VALUES("11521146","895193516","gagal kabur","0","2021-08-12");
 INSERT INTO image VALUES("34915788","312114908","letmein","1","2021-08-11");
-INSERT INTO image VALUES("69968721","312114908","JANCOK","1","2021-08-11");
 
 
 
@@ -44,7 +44,7 @@ CREATE TABLE `image_category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO image_category VALUES("34915788","4");
-INSERT INTO image_category VALUES("69968721","4");
+INSERT INTO image_category VALUES("11521146","2");
 
 
 
@@ -60,7 +60,7 @@ CREATE TABLE `like_image` (
   CONSTRAINT `like_image_ibfk_2` FOREIGN KEY (`id_image`) REFERENCES `image` (`id_image`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO like_image VALUES("312114908","69968721","1");
+INSERT INTO like_image VALUES("895193516","34915788","1");
 
 
 
@@ -75,7 +75,7 @@ CREATE TABLE `link_image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO link_image VALUES("34915788","img/temp/34915788temp.jpg","img/raw/34915788raw.jpg");
-INSERT INTO link_image VALUES("69968721","img/temp/69968721temp.png","img/raw/69968721raw.png");
+INSERT INTO link_image VALUES("11521146","img/temp/11521146temp.jpg","img/raw/11521146raw.jpg");
 
 
 
@@ -95,7 +95,7 @@ CREATE TABLE `profile` (
   CONSTRAINT `profile_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
-INSERT INTO profile VALUES("11","312114908","sidiq","","","","img/profile/312114908.jpeg","2021-08-12 20:06:07");
+INSERT INTO profile VALUES("11","312114908","sidiq","","","indonesia","img/profile/312114908.jpeg","2021-08-12 20:06:07");
 INSERT INTO profile VALUES("12","895193516","sidiq","","","","","2021-08-12 20:05:51");
 
 

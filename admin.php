@@ -169,9 +169,12 @@ $sqlsuka = mysqli_query($conn, "SELECT `image`.*, `like_image`.*, `link_image`.*
                             </thead>
                             <tbody>
                                 <?php 
+                               
                                 $data = mysqli_query($conn, "SHOW TABLES");
                                 while($a = mysqli_fetch_array($data)){
-                                    echo "<tr><td>".$a['Tables_in_upicts']."</td><td class='text-center'>123</td></tr>";
+                                    $b = $a['Tables_in_upicts'];
+                                    $jml = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM $b"));
+                                    echo "<tr><td>".$a['Tables_in_upicts']."</td><td class='text-center'>".$jml."</td></tr>";
                                 }
                                 ?>
                             </tbody>
