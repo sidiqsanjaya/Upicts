@@ -1,9 +1,9 @@
 <?php
 //error_reporting(0);
 $host       =   "localhost";
-$user       =   "younimem_upicts";
-$password   =   "ReaDcWGQr";
-$database   =   "younimem_upicts";
+$user       =   "root";
+$password   =   "root";
+$database   =   "picts";
 $conn = mysqli_connect($host, $user, $password, $database);
 	if($conn === false){
 		die("ERROR: tidak dapat terhubung. " . mysqli_connect_error());
