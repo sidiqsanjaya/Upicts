@@ -22,6 +22,7 @@ $sqlsuka = mysqli_query($conn, "SELECT `image`.*, `like_image`.*, `link_image`.*
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+  	<link rel="icon" type="image/png" href="img/logo/upicts.png">
     <title>Galerry - Profile</title>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
@@ -56,7 +57,7 @@ $sqlsuka = mysqli_query($conn, "SELECT `image`.*, `like_image`.*, `link_image`.*
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Foto yang kamu upload
+          Picture your uploader
         </button>
       </h5>
     </div>
@@ -82,7 +83,7 @@ $sqlsuka = mysqli_query($conn, "SELECT `image`.*, `like_image`.*, `link_image`.*
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Foto yang kamu sukai
+          Picture your like
         </button>
       </h5>
     </div>

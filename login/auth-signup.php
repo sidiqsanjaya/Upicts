@@ -12,7 +12,7 @@ $username_err = $password_err = $confirm_password_err = $name_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){ 
     
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter a username.";
+        $username_err = "Please enter your Email.";
     } else{
         $sql = "SELECT id FROM user WHERE username = ?";
         
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     if(empty(trim($_POST["name"]))){
-        $name_err = "please enter you email dammit.";
+        $name_err = "please enter your Username.";
     }else{ 
         $name = trim($_POST["name"]);
     }

@@ -27,7 +27,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Galerry - admin</title>
+  	<link rel="icon" type="image/png" href="img/logo/upicts.png">
+    <title>Galery - admin</title>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
@@ -37,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <section class="home">
-        <h1>Table error, Diharuskan Restore Table</h1>
+        <h1>Table error, Required to restore table</h1>
         <form action="" class="aaa" method="POST" enctype="multipart/form-data">
                                 <div class="input-group display-5">
                                     <div class=" input-group-prepend"></div>
@@ -45,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                         <input type="file" name="file" class="form-control">
                                     </div>
                                     <br>
-                                    <button type="submit" name="tipe" value="Restore" class="btn btn-primary btnmemulihkan ">Memulihkan</button>
+                                    <button type="submit" name="tipe" value="Restore" class="btn btn-primary btnmemulihkan ">Restore</button>
                                 </div>
                         </form>
 </section>

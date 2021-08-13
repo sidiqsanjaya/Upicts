@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["title"]))){
         $title_err = "must be fill";
     }elseif(strlen($_POST['title']) < 4){
-        $title_err = "realy a name only 4 character? reinsert";
+        $title_err = "Please insert the title, min 4 character title";
     }elseif(strlen($_POST['title']) > 24){
         $title_err = "title only accept max 24 character";
     }elseif(!preg_match("/[a-zA-Z1-9 ]/", $_POST['title'])){

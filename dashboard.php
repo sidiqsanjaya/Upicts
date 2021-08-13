@@ -1,11 +1,11 @@
 <?php
-if(empty($_GET['cari'])){
-    $sqldashboard = mysqli_query($conn,"SELECT * FROM `upicts`.`link_image` INNER JOIN `upicts`.`image` ON ( `link_image`.`id_image` = `image`.`id_image` ) ORDER BY RAND() LIMIT 20");
+if(Empty(trim($_GET['cari']))){
+    $sqldashboard = mysqli_query($conn, "SELECT `image`.*, `link_image`.* FROM `image` LEFT JOIN `link_image` ON `link_image`.`id_image` = `image`.`id_image` ORDER BY RAND() LIMIT 20");
 }else{
-    $cari = $_GET['cari'];
-    $sqldashboard = mysqli_query($conn,"SELECT `link_image`.*, `image`.*, `image_category`.*, `category`.* FROM `link_image` LEFT JOIN `image` ON `link_image`.`id_image` = `image`.`id_image` LEFT JOIN `image_category` ON `image_category`.`id_image` = `image`.`id_image` LEFT JOIN `category` ON `image_category`.`id_category` = `category`.`id_category` WHERE category.`name_category` LIKE '%$cari%' OR image.`title` LIKE '%$cari%' ORDER BY RAND() LIMIT 20");
+     $cari = $_GET['cari'];
+    $sqldashboard = mysqli_query($conn, "SELECT `link_image`.*, `image`.*, `image_category`.*, `category`.* FROM `link_image` LEFT JOIN `image` ON `link_image`.`id_image` = `image`.`id_image` LEFT JOIN `image_category` ON `image_category`.`id_image` = `image`.`id_image` LEFT JOIN `category` ON `image_category`.`id_category` = `category`.`id_category` WHERE category.`name_category` LIKE '%$cari%' OR image.`title` LIKE '%$cari%' ORDER BY RAND() LIMIT 20");
 }
-$rand         = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT 6");
+$rand  = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT 6");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@ $rand         = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT
 
     <header>
         <a href="/" class="logo">
-            Upicts
+            <img src="img/logo/logo.png" witdh="30px" height="30px" alt="img1" title="">
         </a>
         <div id="menu" class="fas fa-bars"></div>
         <?php if($logintrue){ ?>
@@ -37,26 +37,47 @@ $rand         = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT
             <ul>
                 <?php if($level == 'master'){
                     echo '<li><a href="?id=admin">admin</a></li>';
+
                 }?>
+
                 <li><a href="<?php echo "?id=upload"?>">Upload</a></li>
+
                 <li><a href="<?php echo "?id=user"?>">Profile</a></li>
+
             </ul>
+
         </nav>
+
         <a href="<?php echo "?id=logout"?>" class="upload">Logout</a>
+
         <?php }else{ ?>
+
         <a href="<?php echo "?id=sign-in"?>" class="upload">login</a>
+
         <?php } ?>
+
         </header>
+
+
 
     <!-- header end  -->
 
+
+
     <!-- home start   -->
+
     <section class="home">
+
         <h1>Search Stock Photos & Images</h1>
+
         <form action="" method="GET">
-            <input type="search" id="home-search" placeholder="search images" name="cari" value="<?php echo $_GET['cari'];?>">
+
+            <input type="search" id="home-search" placeholder="search images" name="cari" value="<?php echo $cari;?>">
+
             <label for="home-search" class="fas fa-search"></label>
+
         </form>
+
         <ul class="suggestion">
             <li>suggestions : </li>
             <?php while($sugest = mysqli_fetch_array($rand)){ ?>
@@ -64,11 +85,6 @@ $rand         = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT
             <?php } ?>
         </ul>
     </section>
-    <!-- home section ends -->
-
-
-
-    <!-- gallery section start  -->
     <section class="gallery">
         <?php
             while($fdash=mysqli_fetch_array($sqldashboard)){
@@ -84,12 +100,7 @@ $rand         = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT
         </div>
         <?php } ?>
 
-
     </section>
-
-    <!-- gallery section ends -->
-
-    <!-- footer section starts  -->
 
     <section class="footer">
 
@@ -98,7 +109,6 @@ $rand         = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT
         </div>
 
         <h1 class="credit"> &#169; 2021 <a href="#">Upicts</a> all rights reserved.</h1>
-
     </section>
     <!-- jquery cdn link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -124,8 +134,7 @@ $rand         = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT
         });
         }
     </script>
-
-
 </body>
 
 </html>
+

@@ -14,7 +14,7 @@ $username_err = $password_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
+        $username_err = "Please enter your Email.";
     } else{
         $username = trim($_POST["username"]);
     }
@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $username_err = "username not found.";
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                //echo "Oops! Something went wrong. Please try again later.";
             }
             mysqli_stmt_close($stmt);
         }
@@ -93,7 +93,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <span class="help-block form-group"><?php echo $password_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <a href="/" class="linktext">Forgot Password</a>
                         <button type="submit" class="input-submit"
                                 value="Sign in">Sign in</button></a>
                     </div>

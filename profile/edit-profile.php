@@ -31,10 +31,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($updateimg){
                 move_uploaded_file($filetmp, $fprofile.$pimg);
             }else{
-                $file_err = "error while uploader";
+                $file_err = "Error while uploader";
             }
         }else{
-            $file_err = "what u input? only jpeg or png bro";
+            $file_err = "Please insert only jpeg or png Extension";
         }
     }
     
@@ -45,10 +45,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }elseif($_POST['fullname'] == $sqlcheck2['fullname']){
             //donothink
         }elseif(strlen($_POST['fullname']) < 4){
-            $fullname_err = "realy you name only 4 character? reinsert";
+            $fullname_err = "Please insert first name and last name";
         }elseif(strlen($_POST['fullname']) > 24){
-            $fullname_err = "fullname only accept 24 character";
-        }elseif(!preg_match("/[a-zA-Z1-9 ]/", $_POST['fullname'])){
+            $fullname_err = "fullname only accept max 24 character";
+        }elseif(!preg_match("/[a-zA-Z ]/", $_POST['fullname'])){
             $fullname_err = "full name can only be filled with numbers or letters";
         }else{
             $fullname = $_POST['fullname'];
@@ -73,10 +73,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }elseif($_POST['country'] == $sqlcheck2['country']){
             //donothink
         }elseif(strlen($_POST['country']) < 4){
-            $country_err = "realy no phone only 10 numbers? reinsert";
+            $country_err = "Please insert name your country";
         }elseif(strlen($_POST['country']) > 24){
             $country_err = "country name max length 24";
-        }elseif(!preg_match("/[a-zA-Z]/", $_POST['fullname'])){
+        }elseif(!preg_match("/[a-zA-Z]/", $_POST['country'])){
             $countryr_err = "country can only be filled with letter";
         }else{
             $country = $_POST['country'];
@@ -85,9 +85,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $result = mysqli_fetch_array(mysqli_query($conn, "SELECT password FROM user where id_user = '$iduser'"));
         if(empty(trim($_POST['password']))){   
         }elseif(password_verify($_POST['password'],$result['password'])){
-            $pass_err = "password yang dimasukan sama";
+            $pass_err = "password input same with old password";
         }elseif(strlen($_POST['password'] < 6)){
-            $pass_err = "password yang dimasukan kurang 6 huruf";    
+            $pass_err = "password must be 6 character";    
         }else{
             $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
             mysqli_query($conn, "UPDATE profile SET password = '$pass' WHERE id_user = '$iduser' ");
