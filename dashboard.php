@@ -74,7 +74,7 @@ $rand  = mysqli_query($conn,"SELECT * FROM category ORDER BY RAND() LIMIT 6");
 
             <input type="search" id="home-search" placeholder="search images" name="cari" value="<?php echo $cari;?>">
 
-            <label for="home-search" class="fas fa-search"></label>
+          <button for="home-search" style="background-color:transparent; border:none; font-size:24px; margin-right:10px; cursor:pointer;" class="fas fa-search mr-3"></button>
 
         </form>
 

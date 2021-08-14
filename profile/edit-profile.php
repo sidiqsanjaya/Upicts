@@ -86,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(empty(trim($_POST['password']))){   
         }elseif(password_verify($_POST['password'],$result['password'])){
             $pass_err = "password input same with old password";
-        }elseif(strlen($_POST['password'] < 6)){
+        }elseif(strlen($_POST['password']) < 6){
             $pass_err = "password must be 6 character";    
         }else{
             $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);

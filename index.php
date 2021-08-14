@@ -3,7 +3,7 @@ session_start();//session start
 
 require 'config.php'; 
 
-error_reporting(10);
+//error_reporting(10);
 
 $iduser     = $_SESSION['id_user']; //get session and user id
 

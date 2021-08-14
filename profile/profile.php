@@ -46,7 +46,7 @@ $sqlsuka = mysqli_query($conn, "SELECT `image`.*, `like_image`.*, `link_image`.*
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <?php while($profile=mysqli_fetch_array($sqllist)){?>
                     <img class="rounded-circle mt-5" src="<?php echo $profile['imgprofile'];?>" width="90">
-                    <span class="font-weight-bold nama"><?php echo $profile['fullname'];?></span><span class="text-black-50"><?php echo $profile['username'];?></span><span>Indonesia</span>
+                    <span class="font-weight-bold nama"><?php echo $profile['fullname'];?></span><span class="text-black-50"><?php echo $profile['username'];?></span><span><?php echo $profile['country'];?></span>
                     <?php } ?>
                 </div>
             </div>
